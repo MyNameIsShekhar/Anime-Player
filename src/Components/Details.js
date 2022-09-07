@@ -10,7 +10,7 @@ export default function Details() {
     const getDetail = () => {
       try {
         axios
-          .get(`${process.env.REACT_APP_BASE_URL}/anime-details/${animeId}`)
+          .get("https://gogoanime.herokuapp.com/anime-details/${animeId}")
           .then((res) => {
             setDetail(res.data);
           });
