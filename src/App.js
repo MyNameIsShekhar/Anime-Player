@@ -21,7 +21,7 @@ function App() {
           });
         console.log("hi");
       } catch (err) {
-        console.log(err);
+        console.log("err");
       }
     };
     getAnime();
