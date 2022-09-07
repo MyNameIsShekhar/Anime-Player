@@ -19,6 +19,7 @@ function App() {
           .then((res) => {
             setRecent(res.data);
           });
+        console.log("hi");
       } catch (err) {
         console.log(err);
       }
