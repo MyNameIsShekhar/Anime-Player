@@ -15,7 +15,7 @@ function App() {
     const getAnime = () => {
       try {
         axios
-          .get(`https://gogoanime.herokuapp.com/recent-release`)
+          .get("https://gogoanime.herokuapp.com/recent-release")
           .then((res) => {
             setRecent(res.data);
           });
