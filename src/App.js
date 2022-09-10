@@ -12,14 +12,12 @@ function App() {
   const [recent, setRecent] = useState([]);
 
   useEffect(() => {
-    const getAnime = () => {
+    const getAnime = async () => {
       try {
-        axios
-          .get("https://gogoanime.herokuapp.com/recent-release")
-          .then((res) => {
-            setRecent(res.data);
-          });
-        console.log("hi");
+        const Data = await axios.get(
+          "https://gogoanime.herokuapp.com/recent-release"
+        );
+        setRecent(Data.data);
       } catch (err) {
         console.log("err");
       }

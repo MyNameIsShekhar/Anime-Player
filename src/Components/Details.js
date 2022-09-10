@@ -7,13 +7,13 @@ export default function Details() {
 
   const [detail, setDetail] = useState([]);
   useEffect(() => {
-    const getDetail = () => {
+    const getDetail = async () => {
       try {
-        axios
-          .get("https://gogoanime.herokuapp.com/anime-details/${animeId}")
-          .then((res) => {
-            setDetail(res.data);
-          });
+        const Detail = await axios.get(
+          `https://gogoanime.herokuapp.com/anime-details/${animeId}`
+        );
+        setDetail(Detail.data);
+        console.log(detail);
       } catch (err) {
         console.log("Connection Error");
       }
