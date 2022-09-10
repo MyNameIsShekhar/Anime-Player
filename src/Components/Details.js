@@ -6,28 +6,61 @@ export default function Details() {
   const { animeId } = useParams();
 
   const [detail, setDetail] = useState([]);
+  const [watch, setWatch] = useState("");
   useEffect(() => {
     const getDetail = async () => {
-      try {
-        const Detail = await axios.get(
-          `https://gogoanime.herokuapp.com/anime-details/${animeId}`
-        );
-        setDetail(Detail.data);
-      } catch (err) {
-        console.log("Connection Error");
-      }
+      const Detail = await axios
+        .get(`${process.env.REACT_APP_BASE_URL}/anime-details/${animeId}`)
+        .catch((err) => console.log("Connection Error"));
+      setDetail(Detail.data);
+      let n = Detail.data.episodesList.length;
+      console.log();
+      setWatch(Detail.data.episodesList[n - 1].episodeId);
+      // } catch (err) {
+      //   console.log(err);
+      // }
     };
     getDetail();
   }, []);
 
   return (
     <div className="container">
-      <div className="row">
-        <img
-          src={detail.animeImg}
-          className="detail__img col me-5"
-          style={{ maxWidth: "250px" }}
-        />
+      <div className="row all__details">
+        <div className="img__detail">
+          <div className="item">
+            <div class="img-wrap">
+              <img
+                src={detail.animeImg}
+                className="detail__img col"
+                style={{ maxWidth: "250px" }}
+              />
+            </div>
+          </div>
+          <p className="green fw-bold capSize noMargin" align="center">
+            {detail.animeTitle}
+          </p>
+          <p className="green fw-bold capSize noMargin" align="center">
+            {detail.otherNames}
+          </p>
+
+          <p className="green capSize noMargin" align="center">
+            {detail.type}
+          </p>
+          <p className="green capSize noMargin" align="center">
+            {detail.releasedDate}
+          </p>
+          <div>
+            <p className="capSize noMargin" align="center">
+              Total Ep: <span className="green">{detail.releasedDate}</span>
+            </p>
+          </div>
+          <div align="center" className="mt-3">
+            <Link to={`/vidcdn/watch/${watch}`}>
+              <button className="btn btn-success">Watch Now</button>
+            </Link>
+          </div>
+        </div>
+
         <div className="col align-self-center">
           <p align="center">{detail.synopsis}</p>
           <div className="d-flex">
@@ -44,7 +77,8 @@ export default function Details() {
           </div>
         </div>
       </div>
-      <div className="all__ep m-auto" align="center">
+
+      {/* <div className="all__ep" align="center">
         {detail.episodesList &&
           detail.episodesList
             .slice(0)
@@ -56,7 +90,7 @@ export default function Details() {
                 </button>
               </Link>
             ))}
-      </div>
+      </div> */}
     </div>
   );
 }

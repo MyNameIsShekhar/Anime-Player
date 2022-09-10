@@ -15,7 +15,7 @@ function App() {
     const getAnime = async () => {
       try {
         const Data = await axios.get(
-          "https://gogoanime.herokuapp.com/recent-release"
+          `${process.env.REACT_APP_BASE_URL}/recent-release`
         );
         setRecent(Data.data);
       } catch (err) {
