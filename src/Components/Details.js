@@ -21,7 +21,7 @@ export default function Details() {
       // }
     };
     getDetail();
-  }, []);
+  }, [animeId]);
 
   return (
     <div className="container">
@@ -33,6 +33,7 @@ export default function Details() {
                 src={detail.animeImg}
                 className="detail__img col"
                 style={{ maxWidth: "250px" }}
+                alt="animeimg"
               />
             </div>
           </div>
@@ -55,7 +56,10 @@ export default function Details() {
             </p>
           </div>
           <div align="center" className="mt-3">
-            <Link to={`/vidcdn/watch/${watch}`}>
+            <Link
+              to={`/vidcdn/watch/${watch}`}
+              state={{ animeID: `${animeId}` }}
+            >
               <button className="btn btn-success">Watch Now</button>
             </Link>
           </div>
@@ -77,20 +81,6 @@ export default function Details() {
           </div>
         </div>
       </div>
-
-      {/* <div className="all__ep" align="center">
-        {detail.episodesList &&
-          detail.episodesList
-            .slice(0)
-            .reverse()
-            .map((ep) => (
-              <Link to={`/vidcdn/watch/${ep.episodeId}`}>
-                <button className="btn__ep btn btn-primary m-2">
-                  {ep.episodeNum}
-                </button>
-              </Link>
-            ))}
-      </div> */}
     </div>
   );
 }
