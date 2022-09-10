@@ -9,15 +9,16 @@ export default function Stream() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getDetail = () => {
+    const getDetail = async () => {
       try {
-        axios
-          .get("https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}")
-          .then((res) => {
-            const source = res.data.sources;
-            const first = source[0];
-            setData(first.file);
-          });
+        const Video = await axios.get(
+          `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
+        );
+        // .then((res) => {
+        const source = Video.data.sources;
+        const first = source[0];
+        setData(first.file);
+        // });
       } catch (err) {
         console.log("Connection Error");
       }
