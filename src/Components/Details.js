@@ -10,7 +10,7 @@ export default function Details() {
   useEffect(() => {
     const getDetail = async () => {
       const Detail = await axios
-        .get(`${process.env.REACT_APP_BASE_URL}/anime-details/${animeId}`)
+        .get(`https://gogoanime.herokuapp.com/anime-details/${animeId}`)
         .catch((err) => console.log("Connection Error"));
       setDetail(Detail.data);
       let n = Detail.data.episodesList.length;

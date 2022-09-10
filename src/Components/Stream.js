@@ -12,7 +12,7 @@ export default function Stream() {
     const getDetail = async () => {
       try {
         const Video = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/vidcdn/watch/${episodeId}`
+          `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
         );
         const source = Video.data.sources;
         const first = source[0];

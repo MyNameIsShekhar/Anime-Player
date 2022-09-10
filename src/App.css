@@ -193,7 +193,7 @@ a:hover {
     align-items: center;
   }
   video {
-    max-width: 80%;
+    max-width: 100%;
   }
 }
 @media (max-width: 576px) {
