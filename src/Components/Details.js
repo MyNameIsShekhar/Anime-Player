@@ -21,7 +21,7 @@ export default function Details() {
   }, []);
 
   return (
-    <div className="container mt-5 ">
+    <div className="container">
       <div className="row">
         <img
           src={detail.animeImg}

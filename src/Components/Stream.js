@@ -14,11 +14,9 @@ export default function Stream() {
         const Video = await axios.get(
           `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
         );
-        // .then((res) => {
         const source = Video.data.sources;
         const first = source[0];
         setData(first.file);
-        // });
       } catch (err) {
         console.log("Connection Error");
       }
