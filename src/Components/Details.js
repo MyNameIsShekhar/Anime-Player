@@ -13,7 +13,6 @@ export default function Details() {
           `https://gogoanime.herokuapp.com/anime-details/${animeId}`
         );
         setDetail(Detail.data);
-        console.log(detail);
       } catch (err) {
         console.log("Connection Error");
       }
