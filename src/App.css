@@ -244,7 +244,7 @@ a:hover {
 .title {
   display: flex;
   justify-content: center;
-  color: #9440f5;
+  color: #cae962;
   font-family: Poppins;
   user-select: none;
   text-shadow: 3px 3px black;
@@ -276,7 +276,7 @@ svg {
 
 circle {
   fill: none;
-  stroke: #9440f5;
+  stroke: #cae962;
   stroke-width: 8px;
   stroke-dasharray: 300;
   animation: outline 2s cubic-bezier(0.77, 0, 0.18, 1) infinite;

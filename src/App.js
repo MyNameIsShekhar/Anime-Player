@@ -36,11 +36,15 @@ function App() {
       setSearchResult(searchRes.data);
     }
   };
-
+  const handelClick = () => {
+    setSearchResult(null);
+  };
   return (
     <Router className="App">
       <Header handelChanges={handelChanges} />
-      {searchResult ? <SearchJSX searchResult={searchResult} /> : null}
+      {searchResult ? (
+        <SearchJSX searchResult={searchResult} handelClick={handelClick} />
+      ) : null}
       <Routes>
         <Route
           exact

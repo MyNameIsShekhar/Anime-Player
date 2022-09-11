@@ -25,13 +25,13 @@ export default function Header(props) {
       to: "/all-the-anime-help",
     },
   ];
-
+  const [inputVal, setInputVal] = useState("");
   const handelChange = (e) => {
     const val = e.target.value;
     setInputVal(val);
     props.handelChanges(val);
   };
-  const [inputVal, setInputVal] = useState("");
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg header_navbar navbar-light bg-light d-flex align-items-center">
@@ -76,6 +76,7 @@ export default function Header(props) {
                   className="form-control border-0 bg-light"
                   value={inputVal}
                   onChange={handelChange}
+                  id="searchArea"
                 />
                 <div class="input-group-append">
                   <button
