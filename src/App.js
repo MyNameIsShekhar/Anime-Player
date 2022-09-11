@@ -4,12 +4,13 @@ import Popular from "./Components/Popular";
 import RecentAnime from "./Components/RecentAnime";
 import SearchJSX from "./Components/SearchJSX";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Details from "./Components/Details";
 import Stream from "./Components/Stream";
 
 function App() {
+  const childRef = useRef();
   const [recent, setRecent] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
   useEffect(() => {
@@ -38,10 +39,11 @@ function App() {
   };
   const handelClick = () => {
     setSearchResult(null);
+    childRef.current.emptySearch();
   };
   return (
     <Router className="App">
-      <Header handelChanges={handelChanges} />
+      <Header handelChanges={handelChanges} ref={childRef} />
       {searchResult ? (
         <SearchJSX searchResult={searchResult} handelClick={handelClick} />
       ) : null}

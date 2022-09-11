@@ -2,10 +2,9 @@ import React from "react";
 import Card from "./Card";
 
 export default function RecentAnime(props) {
-  const searchResult = props.searchResult;
   return (
     <>
-      {Object.keys(props.recent).length == 0 ? (
+      {Object.keys(props.recent).length === 0 ? (
         <div className="title-container">
           <div className="spinner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

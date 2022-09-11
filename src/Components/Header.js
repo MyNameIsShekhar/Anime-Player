@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { Link } from "react-router-dom";
 import search from "../img/search.png";
 
-export default function Header(props) {
+const Header = forwardRef((props, ref) => {
   const navList = [
     {
       id: 1,
@@ -32,6 +32,12 @@ export default function Header(props) {
     props.handelChanges(val);
   };
 
+  useImperativeHandle(ref, () => ({
+    emptySearch() {
+      setInputVal("");
+    },
+  }));
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg header_navbar navbar-light bg-light d-flex align-items-center">
@@ -48,12 +54,14 @@ export default function Header(props) {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div className="header_logo ms-5">
-            <img
-              src={require("../img/header_logo.png")}
-              width="100px"
-              className="header_img"
-              alt="anime logo"
-            />
+            <Link to={"/"}>
+              <img
+                src={require("../img/header_logo.png")}
+                width="100px"
+                className="header_img"
+                alt="anime logo"
+              />
+            </Link>
           </div>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="nav_list" id="navbarSupportedContent">
@@ -97,4 +105,6 @@ export default function Header(props) {
       </nav>
     </div>
   );
-}
+});
+
+export default Header;
