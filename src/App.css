@@ -235,6 +235,74 @@ a:hover {
 .odd {
   background-color: hsl(228, 7%, 20%);
 }
+
+.active {
+  background-color: rgb(4, 142, 4) !important;
+}
+
+/* Loading Screen */
+.title {
+  display: flex;
+  justify-content: center;
+  color: #9440f5;
+  font-family: Poppins;
+  user-select: none;
+  text-shadow: 3px 3px black;
+}
+
+.title-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
+svg {
+  width: 30%;
+  max-width: 10rem;
+  margin: 10px;
+  animation: rotate 3.6s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: #9440f5;
+  stroke-width: 8px;
+  stroke-dasharray: 300;
+  animation: outline 2s cubic-bezier(0.77, 0, 0.18, 1) infinite;
+}
+
+@keyframes outline {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 600;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
 @media (max-width: 1400px) {
   .container_all {
     grid-template-columns: 30% 70%;
@@ -253,6 +321,18 @@ a:hover {
   }
   .ep__list {
     left: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav_list {
+    margin-left: 0;
+    align-items: center;
+    margin-top: -20px;
+  }
+
+  .nav-item {
+    padding: 5px 0px;
   }
 }
 @media (max-width: 770px) {
@@ -278,16 +358,6 @@ a:hover {
   .container__total {
     display: flex;
     justify-content: center;
-  }
-
-  .nav_list {
-    margin-left: 0;
-    align-items: center;
-    margin-top: -20px;
-  }
-
-  .nav-item {
-    padding: 5px 0px;
   }
 
   .input-gp {
