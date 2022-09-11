@@ -106,5 +106,4 @@ const Header = forwardRef((props, ref) => {
     </div>
   );
 });
-
 export default Header;
