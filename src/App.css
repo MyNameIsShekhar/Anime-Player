@@ -9,7 +9,28 @@
 }
 
 body {
-  background-color: #202125;
+  background-color: rgb(32, 33, 37);
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: #3d3e42 #202125;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #202125;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3d3e42;
+  /* border-radius: 10px; */
 }
 
 .capSize {
@@ -144,6 +165,11 @@ p {
   color: #fff;
 }
 
+.btn__ep {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
 .btn__ep:hover {
   background-color: rgb(4, 142, 4);
 }
@@ -181,9 +207,48 @@ a:hover {
   align-items: center;
 }
 
+/* Stream */
+.container_all {
+  display: grid;
+  grid-template-columns: 25% auto 20%;
+}
+
+.ep__list {
+  position: relative;
+  overflow: scroll;
+  margin: 0;
+  padding: 0;
+  height: 60vh;
+  overflow-x: hidden;
+  font-size: 16px;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.even {
+  background-color: #202125;
+}
+.odd {
+  background-color: hsl(228, 7%, 20%);
+}
+@media (max-width: 1400px) {
+  .container_all {
+    grid-template-columns: 30% 70%;
+  }
+}
+
 @media (max-width: 1290px) {
   .all__details {
     display: flex;
+  }
+}
+@media (max-width: 1200px) {
+  .container_all {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .ep__list {
+    left: 0;
   }
 }
 @media (max-width: 770px) {

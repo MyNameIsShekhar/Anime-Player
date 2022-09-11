@@ -36,25 +36,43 @@ export default function Stream() {
   }, [animeId, episodeId]);
 
   return (
-    <div className="container">
+    <div className="container_all">
+      {/* All Episodes */}
+      <div className="all__ep row" align="center">
+        <p className="green">List Of episodes:</p>
+        <ul className="ep__list">
+          {detail.episodesList &&
+            detail.episodesList
+              .slice(0)
+              .reverse()
+              .map((ep) => (
+                <Link
+                  to={`/vidcdn/watch/${ep.episodeId}`}
+                  state={{ animeID: `${animeId}` }}
+                >
+                  {ep.episodeNum % 2 === 0 ? (
+                    <li className="btn__ep even" style={{ color: "white" }}>
+                      <div className="green m-2">{ep.episodeNum}</div>
+                      <div>{ep.episodeId}</div>
+                    </li>
+                  ) : (
+                    <li className="btn__ep odd" style={{ color: "white" }}>
+                      <div className="green m-2">{ep.episodeNum}</div>
+                      <div>{ep.episodeId}</div>
+                    </li>
+                  )}
+                </Link>
+              ))}
+        </ul>
+      </div>
+
+      {/* Video */}
       <div className="video_player m-auto mt-5">
         <ReactPlayer url={data} controls className="reactPlayer" />
       </div>
-      <div className="all__ep" align="center">
-        {detail.episodesList &&
-          detail.episodesList
-            .slice(0)
-            .reverse()
-            .map((ep) => (
-              <Link
-                to={`/vidcdn/watch/${ep.episodeId}`}
-                state={{ animeID: `${animeId}` }}
-              >
-                <button className="btn__ep btn btn-primary m-2">
-                  {ep.episodeNum}
-                </button>
-              </Link>
-            ))}
+
+      <div className="details">
+        <h4>Detail</h4>
       </div>
     </div>
   );
