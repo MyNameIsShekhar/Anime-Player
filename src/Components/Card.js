@@ -2,9 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Card(props) {
+  function makeBold(input, wordsToBold) {
+    // let r = new RegExp("(" + wordsToBold.join("|") + ")", "ig");
+    // return input.replace(r, `<span className='green'>$1</span>`);
+    // return input;
+    var re = new RegExp(wordsToBold, "g");
+    return input.replace(re, "<b>" + wordsToBold + "</b>");
+  }
   return (
     <>
-      <div className="card__main card m-2" style={{ display: "inline-block" }}>
+      <div
+        className="card__main card m-2"
+        style={{ display: "inline-block", padding: `${props.padding}` }}
+      >
         <Link to={`/anime-detail/${props.rec.animeId}`}>
           <img
             src={props.rec.animeImg}
@@ -12,12 +22,18 @@ export default function Card(props) {
             alt={props.rec.animeId}
           />
           <div className="card-body row">
-            <h5 className="card-title" align="center">
-              {props.rec.animeTitle}
-            </h5>
-            <p className="card-text mt-auto" align="center">
-              Ep No: {props.rec.episodeNum}
-            </p>
+            <h5
+              className="card-title"
+              align="center"
+              dangerouslySetInnerHTML={{
+                __html: makeBold(props.rec.animeTitle, "Dub"),
+              }}
+            />
+            {props.ep != "false" ? (
+              <p className="card-text mt-auto" align="center">
+                Ep No: {props.rec.episodeNum}
+              </p>
+            ) : null}
           </div>
         </Link>
       </div>

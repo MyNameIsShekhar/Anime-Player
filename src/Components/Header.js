@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import search from "../img/search.png";
 
-export default function Header() {
+export default function Header(props) {
   const navList = [
     {
       id: 1,
@@ -26,6 +26,12 @@ export default function Header() {
     },
   ];
 
+  const handelChange = (e) => {
+    const val = e.target.value;
+    setInputVal(val);
+    props.handelChanges(val);
+  };
+  const [inputVal, setInputVal] = useState("");
   return (
     <div>
       <nav className="navbar navbar-expand-lg header_navbar navbar-light bg-light d-flex align-items-center">
@@ -68,6 +74,8 @@ export default function Header() {
                   placeholder="Search Here.."
                   aria-describedby="button-addon1"
                   className="form-control border-0 bg-light"
+                  value={inputVal}
+                  onChange={handelChange}
                 />
                 <div class="input-group-append">
                   <button
