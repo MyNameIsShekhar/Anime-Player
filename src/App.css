@@ -214,7 +214,7 @@ a:hover {
 /* Stream */
 .container_all {
   display: grid;
-  grid-template-columns: 25% auto 20%;
+  grid-template-columns: 30% 50% 20%;
 }
 
 .ep__list {

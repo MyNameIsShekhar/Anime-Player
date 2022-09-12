@@ -58,12 +58,12 @@ export default function Stream() {
                           style={{ color: "white" }}
                         >
                           <div className="green m-2">{ep.episodeNum}</div>
-                          <div>{ep.episodeId}</div>
+                          <div className="me-2">{ep.episodeId}</div>
                         </li>
                       ) : ep.episodeNum % 2 === 0 ? (
                         <li className="btn__ep even" style={{ color: "white" }}>
                           <div className="green m-2">{ep.episodeNum}</div>
-                          <div>{ep.episodeId}</div>
+                          <div className="me-2">{ep.episodeId}</div>
                         </li>
                       ) : (
                         <li className="btn__ep odd" style={{ color: "white" }}>
