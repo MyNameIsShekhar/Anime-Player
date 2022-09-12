@@ -81,11 +81,16 @@ function App() {
               searchResult={searchResult}
               propular={propular}
               ref={scrollRef}
+              handelClick={handelClick}
             />
           }
         />
         <Route exact path="/popular" element={<Popular />} />
-        <Route exact path="/anime-detail/:animeId" element={<Details />} />
+        <Route
+          exact
+          path="/anime-detail/:animeId"
+          element={<Details handelClick={handelClick} />}
+        />
         <Route exact path="/vidcdn/watch/:episodeId" element={<Stream />} />
       </Routes>
     </Router>

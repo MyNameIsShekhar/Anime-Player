@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-export default function Details() {
+export default function Details(props) {
   const { animeId } = useParams();
 
   const [detail, setDetail] = useState([]);
@@ -59,6 +59,9 @@ export default function Details() {
               <Link
                 to={`/vidcdn/watch/${watch}`}
                 state={{ animeID: `${animeId}` }}
+                onClick={() => {
+                  props.handelClick();
+                }}
               >
                 <button className="btn btn-success">Watch Now</button>
               </Link>

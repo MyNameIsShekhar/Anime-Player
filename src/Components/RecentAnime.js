@@ -3,7 +3,9 @@ import Card from "./Card";
 
 const RecentAnime = forwardRef((props, ref) => {
   const popular = useRef(null);
-
+  const handelClick = () => {
+    props.handelClick();
+  };
   useImperativeHandle(ref, () => ({
     handelScroll(ele) {
       if (ele === "Popular") {
@@ -39,7 +41,7 @@ const RecentAnime = forwardRef((props, ref) => {
               Recently Added Anime
             </h4>
             {props.recent.map((rec) => (
-              <Card rec={rec} key={rec.animeId} />
+              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
           <hr
@@ -62,7 +64,7 @@ const RecentAnime = forwardRef((props, ref) => {
               Propular Anime
             </h4>
             {props.propular.map((rec) => (
-              <Card rec={rec} key={rec.animeId} />
+              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
         </div>

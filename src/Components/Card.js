@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function Card(props) {
   function makeBold(input, wordsToBold) {
-    // let r = new RegExp("(" + wordsToBold.join("|") + ")", "ig");
-    // return input.replace(r, `<span className='green'>$1</span>`);
-    // return input;
     var re = new RegExp(wordsToBold, "g");
     return input.replace(re, "<b>" + wordsToBold + "</b>");
   }
@@ -14,6 +11,7 @@ export default function Card(props) {
       <div
         className="card__main card m-2"
         style={{ display: "inline-block", padding: `${props.padding}` }}
+        onClick={() => props.handelClick()}
       >
         <Link to={`/anime-detail/${props.rec.animeId}`}>
           <img
@@ -29,7 +27,7 @@ export default function Card(props) {
                 __html: makeBold(props.rec.animeTitle, "Dub"),
               }}
             />
-            {props.ep != "false" ? (
+            {props.ep !== "false" ? (
               <p className="card-text mt-auto" align="center">
                 Ep No: {props.rec.episodeNum}
               </p>
