@@ -1,7 +1,19 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import Card from "./Card";
 
-export default function RecentAnime(props) {
+const RecentAnime = forwardRef((props, ref) => {
+  const popular = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    handelScroll(ele) {
+      if (ele === "Popular") {
+        window.scrollTo({
+          top: popular.current.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    },
+  }));
   return (
     <>
       {Object.keys(props.recent).length === 0 ? (
@@ -30,8 +42,33 @@ export default function RecentAnime(props) {
               <Card rec={rec} key={rec.animeId} />
             ))}
           </div>
+          <hr
+            style={{
+              color: "white",
+              height: "2px",
+              width: "80%",
+              margin: "20px auto",
+            }}
+          />
+          <div className="container__main row Popular" ref={popular}>
+            <h4
+              style={{
+                marginTop: "20px",
+                textTransform: "uppercase",
+                fontFamily: "Poppins",
+              }}
+              align="center"
+            >
+              Propular Anime
+            </h4>
+            {props.propular.map((rec) => (
+              <Card rec={rec} key={rec.animeId} />
+            ))}
+          </div>
         </div>
       )}
     </>
   );
-}
+});
+
+export default RecentAnime;

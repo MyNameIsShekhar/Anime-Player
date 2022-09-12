@@ -11,7 +11,9 @@ import Stream from "./Components/Stream";
 
 function App() {
   const childRef = useRef();
+  const scrollRef = useRef();
   const [recent, setRecent] = useState([]);
+  const [propular, setPropular] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
   useEffect(() => {
     const getAnime = async () => {
@@ -25,6 +27,20 @@ function App() {
       }
     };
     getAnime();
+  }, []);
+
+  useEffect(() => {
+    const getPropular = async () => {
+      try {
+        const propu = await axios.get(
+          `https://gogoanime.herokuapp.com/popular`
+        );
+        setPropular(propu.data);
+      } catch (err) {
+        console.log("err");
+      }
+    };
+    getPropular();
   }, []);
 
   const handelChanges = async (val) => {
@@ -41,9 +57,17 @@ function App() {
     setSearchResult(null);
     childRef.current.emptySearch();
   };
+
+  const handelScroll = (val) => {
+    scrollRef.current.handelScroll(val);
+  };
   return (
     <Router className="App">
-      <Header handelChanges={handelChanges} ref={childRef} />
+      <Header
+        handelChanges={handelChanges}
+        ref={childRef}
+        handelScroll={handelScroll}
+      />
       {searchResult ? (
         <SearchJSX searchResult={searchResult} handelClick={handelClick} />
       ) : null}
@@ -51,7 +75,14 @@ function App() {
         <Route
           exact
           path="/"
-          element={<RecentAnime recent={recent} searchResult={searchResult} />}
+          element={
+            <RecentAnime
+              recent={recent}
+              searchResult={searchResult}
+              propular={propular}
+              ref={scrollRef}
+            />
+          }
         />
         <Route exact path="/popular" element={<Popular />} />
         <Route exact path="/anime-detail/:animeId" element={<Details />} />

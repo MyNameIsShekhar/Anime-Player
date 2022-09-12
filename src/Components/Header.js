@@ -12,17 +12,17 @@ const Header = forwardRef((props, ref) => {
     {
       id: 2,
       text: "Popular",
-      to: "/popular",
+      to: "/",
     },
     {
       id: 3,
       text: "Anime News",
-      to: "/all-the-anime-news",
+      to: "/",
     },
     {
       id: 4,
       text: "Help",
-      to: "/all-the-anime-help",
+      to: "/",
     },
   ];
   const [inputVal, setInputVal] = useState("");
@@ -37,6 +37,10 @@ const Header = forwardRef((props, ref) => {
       setInputVal("");
     },
   }));
+
+  const handelScroll = (ele) => {
+    props.handelScroll(ele);
+  };
 
   return (
     <div>
@@ -67,7 +71,12 @@ const Header = forwardRef((props, ref) => {
             <div className="nav_list" id="navbarSupportedContent">
               <ul className="nav_list navbar-nav me-auto mb-2 mb-lg-0">
                 {navList.map((list) => (
-                  <li className="nav-item">
+                  <li
+                    className="nav-item"
+                    onClick={() => {
+                      handelScroll(list.text);
+                    }}
+                  >
                     <Link to={list.to} className={`link`}>
                       {list.text}
                     </Link>

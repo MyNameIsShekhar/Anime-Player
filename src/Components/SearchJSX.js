@@ -15,7 +15,14 @@ export default function SearchJSX(props) {
           <Card rec={rec} key={rec.animeId} padding="0 9px" ep="false" />
         ))}
       </span>
-      <hr style={{ color: "white" }} />
+      <hr
+        style={{
+          color: "white",
+          height: "2px",
+          width: "80%",
+          margin: "20px auto",
+        }}
+      />
     </div>
   );
 }

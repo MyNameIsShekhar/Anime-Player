@@ -37,7 +37,7 @@ export default function Stream() {
 
   return (
     <>
-      {Object.keys(data).length != 0 ? (
+      {Object.keys(data).length !== 0 ? (
         <div className="container_all">
           {/* All Episodes */}
           <div className="all__ep row" align="center">
@@ -52,7 +52,7 @@ export default function Stream() {
                       to={`/vidcdn/watch/${ep.episodeId}`}
                       state={{ animeID: `${animeId}` }}
                     >
-                      {ep.episodeId == episodeId ? (
+                      {ep.episodeId === episodeId ? (
                         <li
                           className="btn__ep even active"
                           style={{ color: "white" }}
@@ -81,9 +81,7 @@ export default function Stream() {
             <ReactPlayer url={data} controls className="reactPlayer" />
           </div>
 
-          <div className="details">
-            <h4></h4>
-          </div>
+          <div className="details">hi</div>
         </div>
       ) : (
         <div className="title-container">
