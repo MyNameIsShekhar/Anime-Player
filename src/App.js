@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./Components/Header";
-import Popular from "./Components/Popular";
+import DubAnime from "./Components/DubAnime";
 import RecentAnime from "./Components/RecentAnime";
 import SearchJSX from "./Components/SearchJSX";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -14,6 +14,7 @@ function App() {
   const scrollRef = useRef();
   const [recent, setRecent] = useState([]);
   const [propular, setPropular] = useState([]);
+  const [dub, setDub] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
   useEffect(() => {
     const getAnime = async () => {
@@ -41,6 +42,20 @@ function App() {
       }
     };
     getPropular();
+  }, []);
+
+  useEffect(() => {
+    const getDub = async () => {
+      try {
+        const Data = await axios.get(
+          `https://gogoanime.herokuapp.com/recent-release?type=2`
+        );
+        setDub(Data.data);
+      } catch (err) {
+        console.log("err");
+      }
+    };
+    getDub();
   }, []);
 
   const handelChanges = async (val) => {
@@ -85,7 +100,19 @@ function App() {
             />
           }
         />
-        <Route exact path="/popular" element={<Popular />} />
+        <Route
+          exact
+          path="/dub-anime"
+          element={
+            <DubAnime
+              recent={dub}
+              searchResult={searchResult}
+              propular={propular}
+              ref={scrollRef}
+              handelClick={handelClick}
+            />
+          }
+        />
         <Route
           exact
           path="/anime-detail/:animeId"

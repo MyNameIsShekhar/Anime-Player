@@ -16,8 +16,8 @@ const Header = forwardRef((props, ref) => {
     },
     {
       id: 3,
-      text: "Anime News",
-      to: "/",
+      text: "Dub Anime",
+      to: "/dub-anime",
     },
     {
       id: 4,
