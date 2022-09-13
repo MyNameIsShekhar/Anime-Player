@@ -142,9 +142,12 @@ a {
 }
 
 .container__total {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 70% 30%;
-  justify-content: left;
+  justify-content: left; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-body {

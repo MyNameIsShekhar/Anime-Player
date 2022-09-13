@@ -44,17 +44,17 @@ function App() {
     getPropular();
   }, []);
 
+  const getDub = async () => {
+    try {
+      const Data = await axios.get(
+        `https://gogoanime.herokuapp.com/recent-release?type=2`
+      );
+      setDub(Data.data);
+    } catch (err) {
+      console.log("err");
+    }
+  };
   useEffect(() => {
-    const getDub = async () => {
-      try {
-        const Data = await axios.get(
-          `https://gogoanime.herokuapp.com/recent-release?type=2`
-        );
-        setDub(Data.data);
-      } catch (err) {
-        console.log("err");
-      }
-    };
     getDub();
   }, []);
 
@@ -107,8 +107,6 @@ function App() {
             <DubAnime
               recent={dub}
               searchResult={searchResult}
-              propular={propular}
-              ref={scrollRef}
               handelClick={handelClick}
             />
           }

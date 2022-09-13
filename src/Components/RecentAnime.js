@@ -28,7 +28,7 @@ const RecentAnime = forwardRef((props, ref) => {
           <h4 className="title">loading...</h4>
         </div>
       ) : (
-        <div className="container__toal">
+        <div className="container__total">
           <div className="container__main row">
             <h4
               style={{
@@ -44,6 +44,13 @@ const RecentAnime = forwardRef((props, ref) => {
               <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
+          <button
+            className="btn btn-primary ms-auto me-auto mt-3"
+            align="center"
+            style={{ width: "fit-content" }}
+          >
+            Load More
+          </button>
           <hr
             style={{
               color: "white",
@@ -67,6 +74,13 @@ const RecentAnime = forwardRef((props, ref) => {
               <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
+          <button
+            className="btn btn-primary ms-auto me-auto mt-3"
+            align="center"
+            style={{ width: "fit-content" }}
+          >
+            Load More
+          </button>
         </div>
       )}
     </>

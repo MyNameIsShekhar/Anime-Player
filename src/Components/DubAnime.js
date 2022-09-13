@@ -6,16 +6,6 @@ const DubAnime = forwardRef((props, ref) => {
   const handelClick = () => {
     props.handelClick();
   };
-  useImperativeHandle(ref, () => ({
-    handelScroll(ele) {
-      if (ele === "Popular") {
-        window.scrollTo({
-          top: popular.current.offsetTop,
-          behavior: "smooth",
-        });
-      }
-    },
-  }));
   return (
     <>
       {Object.keys(props.recent).length === 0 ? (
@@ -28,7 +18,7 @@ const DubAnime = forwardRef((props, ref) => {
           <h4 className="title">loading...</h4>
         </div>
       ) : (
-        <div className="container__toal">
+        <div className="container__total">
           <div className="container__main row">
             <h4
               style={{
@@ -38,12 +28,19 @@ const DubAnime = forwardRef((props, ref) => {
               }}
               align="center"
             >
-              Recently Added Anime
+              Recently Added <b>DUB</b> Anime
             </h4>
             {props.recent.map((rec) => (
               <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
+          <button
+            className="btn btn-primary ms-auto me-auto mt-3"
+            align="center"
+            style={{ width: "fit-content" }}
+          >
+            Load More
+          </button>
           <hr
             style={{
               color: "white",
@@ -52,21 +49,6 @@ const DubAnime = forwardRef((props, ref) => {
               margin: "20px auto",
             }}
           />
-          <div className="container__main row Popular" ref={popular}>
-            <h4
-              style={{
-                marginTop: "20px",
-                textTransform: "uppercase",
-                fontFamily: "Poppins",
-              }}
-              align="center"
-            >
-              Propular Anime
-            </h4>
-            {props.propular.map((rec) => (
-              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
-            ))}
-          </div>
         </div>
       )}
     </>
