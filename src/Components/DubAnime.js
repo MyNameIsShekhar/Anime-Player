@@ -6,6 +6,9 @@ const DubAnime = forwardRef((props, ref) => {
   const handelClick = () => {
     props.handelClick();
   };
+  const loadMore = () => {
+    props.loadMoreDub();
+  };
   return (
     <>
       {Object.keys(props.recent).length === 0 ? (
@@ -38,6 +41,7 @@ const DubAnime = forwardRef((props, ref) => {
             className="btn btn-primary ms-auto me-auto mt-3"
             align="center"
             style={{ width: "fit-content" }}
+            onClick={loadMore}
           >
             Load More
           </button>

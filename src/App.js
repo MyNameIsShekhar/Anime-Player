@@ -8,54 +8,58 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Details from "./Components/Details";
 import Stream from "./Components/Stream";
+import Popular from "./Components/Popular";
 
 function App() {
   const childRef = useRef();
-  const scrollRef = useRef();
+  // const scrollRef = useRef();
   const [recent, setRecent] = useState([]);
-  const [propular, setPropular] = useState([]);
+  const [popular, setPopular] = useState([]);
   const [dub, setDub] = useState([]);
+  const [idx, setIdx] = useState(1);
+  const [idxPropular, setidxPropular] = useState(1);
+  const [idxdub, setIdxdub] = useState(1);
+  const renderAfterCalled = useRef(false);
   const [searchResult, setSearchResult] = useState(null);
-  useEffect(() => {
-    const getAnime = async () => {
-      try {
-        const Data = await axios.get(
-          `https://gogoanime.herokuapp.com/recent-release`
-        );
-        setRecent(Data.data);
-      } catch (err) {
-        console.log("err");
-      }
-    };
-    getAnime();
-  }, []);
 
-  useEffect(() => {
-    const getPropular = async () => {
-      try {
-        const propu = await axios.get(
-          `https://gogoanime.herokuapp.com/popular`
-        );
-        setPropular(propu.data);
-      } catch (err) {
-        console.log("err");
-      }
-    };
-    getPropular();
-  }, []);
-
-  const getDub = async () => {
+  // Fetch Functions
+  const getAnime = async (id = 1) => {
     try {
       const Data = await axios.get(
-        `https://gogoanime.herokuapp.com/recent-release?type=2`
+        `https://gogoanime.herokuapp.com/recent-release?page=${id}`
       );
-      setDub(Data.data);
+      setRecent((recent) => [...recent, ...Data.data]);
+    } catch (err) {
+      console.log("err");
+    }
+  };
+  const getPropular = async (id = 1) => {
+    try {
+      const propu = await axios.get(
+        `https://gogoanime.herokuapp.com/popular?page=${id}`
+      );
+      setPopular((popular) => [...popular, ...propu.data]);
+    } catch (err) {
+      console.log("err");
+    }
+  };
+  const getDub = async (id = 1) => {
+    try {
+      const Data = await axios.get(
+        `https://gogoanime.herokuapp.com/recent-release?type=2&page=${id}`
+      );
+      setDub((dub) => [...dub, ...Data.data]);
     } catch (err) {
       console.log("err");
     }
   };
   useEffect(() => {
-    getDub();
+    if (!renderAfterCalled.current) {
+      getAnime(1);
+      getPropular();
+      getDub();
+    }
+    renderAfterCalled.current = true;
   }, []);
 
   const handelChanges = async (val) => {
@@ -73,16 +77,26 @@ function App() {
     childRef.current.emptySearch();
   };
 
-  const handelScroll = (val) => {
-    scrollRef.current.handelScroll(val);
+  const loadMoreRecent = () => {
+    getAnime(idx + 1);
+    setIdx(idx + 1);
   };
+  const loadMorePopular = () => {
+    getPropular(idxPropular + 1);
+    setidxPropular(idxPropular + 1);
+  };
+
+  const loadMoreDub = () => {
+    getDub(idxdub + 1);
+    setIdxdub(idxdub + 1);
+  };
+
+  // const handelScroll = (val) => {
+  //   scrollRef.current.handelScroll(val);
+  // };
   return (
     <Router className="App">
-      <Header
-        handelChanges={handelChanges}
-        ref={childRef}
-        handelScroll={handelScroll}
-      />
+      <Header handelChanges={handelChanges} ref={childRef} />
       {searchResult ? (
         <SearchJSX searchResult={searchResult} handelClick={handelClick} />
       ) : null}
@@ -94,9 +108,19 @@ function App() {
             <RecentAnime
               recent={recent}
               searchResult={searchResult}
-              propular={propular}
-              ref={scrollRef}
               handelClick={handelClick}
+              loadMoreRecent={loadMoreRecent}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/popular"
+          element={
+            <Popular
+              popular={popular}
+              handelClick={handelClick}
+              loadMorePopular={loadMorePopular}
             />
           }
         />
@@ -108,6 +132,7 @@ function App() {
               recent={dub}
               searchResult={searchResult}
               handelClick={handelClick}
+              loadMoreDub={loadMoreDub}
             />
           }
         />

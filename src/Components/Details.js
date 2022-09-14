@@ -28,7 +28,7 @@ export default function Details(props) {
         <div className="row all__details">
           <div className="img__detail">
             <div className="item">
-              <div class="img-wrap">
+              <div className="img-wrap">
                 <img
                   src={detail.animeImg}
                   className="detail__img col"

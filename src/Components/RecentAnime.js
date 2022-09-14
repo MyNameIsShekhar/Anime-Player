@@ -1,21 +1,24 @@
 import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import Card from "./Card";
 
-const RecentAnime = forwardRef((props, ref) => {
+const RecentAnime = (props) => {
   const popular = useRef(null);
   const handelClick = () => {
     props.handelClick();
   };
-  useImperativeHandle(ref, () => ({
-    handelScroll(ele) {
-      if (ele === "Popular") {
-        window.scrollTo({
-          top: popular.current.offsetTop,
-          behavior: "smooth",
-        });
-      }
-    },
-  }));
+  const loadMore = () => {
+    props.loadMoreRecent();
+  };
+  // useImperativeHandle(ref, () => ({
+  //   handelScroll(ele) {
+  //     if (ele === "Popular") {
+  //       window.scrollTo({
+  //         top: popular.current.offsetTop,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   },
+  // }));
   return (
     <>
       {Object.keys(props.recent).length === 0 ? (
@@ -40,14 +43,16 @@ const RecentAnime = forwardRef((props, ref) => {
             >
               Recently Added Anime
             </h4>
-            {props.recent.map((rec) => (
-              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
-            ))}
+            {props.recent &&
+              props.recent.map((rec) => (
+                <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
+              ))}
           </div>
           <button
             className="btn btn-primary ms-auto me-auto mt-3"
             align="center"
             style={{ width: "fit-content" }}
+            onClick={loadMore}
           >
             Load More
           </button>
@@ -59,32 +64,10 @@ const RecentAnime = forwardRef((props, ref) => {
               margin: "20px auto",
             }}
           />
-          <div className="container__main row Popular" ref={popular}>
-            <h4
-              style={{
-                marginTop: "20px",
-                textTransform: "uppercase",
-                fontFamily: "Poppins",
-              }}
-              align="center"
-            >
-              Propular Anime
-            </h4>
-            {props.propular.map((rec) => (
-              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
-            ))}
-          </div>
-          <button
-            className="btn btn-primary ms-auto me-auto mt-3"
-            align="center"
-            style={{ width: "fit-content" }}
-          >
-            Load More
-          </button>
         </div>
       )}
     </>
   );
-});
+};
 
 export default RecentAnime;

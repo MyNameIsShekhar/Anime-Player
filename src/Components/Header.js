@@ -12,7 +12,7 @@ const Header = forwardRef((props, ref) => {
     {
       id: 2,
       text: "Popular",
-      to: "/",
+      to: "/popular",
     },
     {
       id: 3,
@@ -38,16 +38,16 @@ const Header = forwardRef((props, ref) => {
     },
   }));
 
-  const handelScroll = (ele) => {
-    props.handelScroll(ele);
-  };
+  // const handelScroll = (ele) => {
+  //   props.handelScroll(ele);
+  // };
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg header_navbar navbar-light bg-light d-flex align-items-center">
         <div className="container-fluid ">
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -55,7 +55,7 @@ const Header = forwardRef((props, ref) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="header_logo ms-5">
             <Link to={"/"}>
@@ -71,13 +71,8 @@ const Header = forwardRef((props, ref) => {
             <div className="nav_list" id="navbarSupportedContent">
               <ul className="nav_list navbar-nav me-auto mb-2 mb-lg-0">
                 {navList.map((list) => (
-                  <li
-                    className="nav-item"
-                    onClick={() => {
-                      handelScroll(list.text);
-                    }}
-                  >
-                    <Link to={list.to} className={`link`}>
+                  <li className="nav-item">
+                    <Link to={list.to} className="HeaderLi link">
                       {list.text}
                     </Link>
                   </li>
@@ -95,7 +90,7 @@ const Header = forwardRef((props, ref) => {
                   onChange={handelChange}
                   id="searchArea"
                 />
-                <div class="input-group-append">
+                <div className="input-group-append">
                   <button
                     id="button-addon1"
                     type="submit"
