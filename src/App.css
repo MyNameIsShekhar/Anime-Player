@@ -243,14 +243,31 @@ a:hover {
 }
 
 .video_player {
-  position: relative;
+  /* position: relative;
+  display: flex;
+  /* align-items: center; */
   /* padding-bottom: 56.25%; */
-  height: 100%;
+  /* height: 430px; */
+  /* width: 100%; */
+  /* background-color: #000; */
+  /* min-height: 260px; */
   width: 100%;
-  background-color: #000;
-  min-height: 260px;
+  background: #111;
+  padding-bottom: 56.25%;
+  position: relative;
+  z-index: 88;
 }
 
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 5;
+}
 .responsive-iframe {
   position: absolute;
   top: 0;
@@ -266,7 +283,7 @@ a:hover {
   position: relative;
   height: 100% !important;
   width: 100% !important;
-  background-color: #000;
+  background-color: none;
   min-height: 260px;
 }
 
@@ -413,5 +430,11 @@ circle {
   .form-control,
   .btn-link {
     padding: 0;
+  }
+}
+
+@media (max-width: 460px) {
+  .video_player {
+    height: 250px !important;
   }
 }

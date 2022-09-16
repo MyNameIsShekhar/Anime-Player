@@ -18,9 +18,10 @@ export default function Stream() {
         const Video = await axios.get(
           `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
         );
-        const source = Video.data.sources;
-        const first = source[0];
-        setData(first.file);
+        console.log(Video.data.Referer);
+        // const source = Video.data.sources;
+        // const first = source[0];
+        setData(Video.data.Referer);
       } catch (err) {
         console.log("Connection Error");
       }
@@ -79,10 +80,15 @@ export default function Stream() {
           {/* Video */}
           <div className="video_player m-auto mt-5">
             {/* <ReactPlayer url={data} controls className="reactPlayer" /> */}
-            {/* <iframe
-              src="https://gogohd.net/streaming.php?id=MTg4NzA5&title=Cardfight%21%21+Vanguard%3A+Will%2BDress+Episode+1&typesub=SUB"
-              title="myiframe"
-            /> */}
+            <iframe
+              src={data}
+              width="100%"
+              height="500"
+              scrolling="no"
+              frameBorder="0"
+              allowfullscreen="allowfullscreen"
+              webkitallowfullscreen="true"
+            />
           </div>
 
           {/* <div className="details">hi</div> */}
