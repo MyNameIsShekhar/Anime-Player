@@ -42,7 +42,17 @@ export default function Stream() {
         <div className="container_all">
           {/* All Episodes */}
           <div className="all__ep row" align="center">
-            <p className="green">List Of episodes:</p>
+            <p
+              className="green"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontWeight: "800",
+                textTransform: "capitalize",
+              }}
+            >
+              List Of episodes:
+            </p>
             <ul className="ep__list">
               {detail.episodesList &&
                 detail.episodesList
@@ -58,18 +68,24 @@ export default function Stream() {
                           className="btn__ep even active"
                           style={{ color: "white" }}
                         >
-                          <div className="green m-2">{ep.episodeNum}</div>
-                          <div className="me-2">{ep.episodeId}</div>
+                          <div className="green Anime-ep-num">
+                            {ep.episodeNum}
+                          </div>
+                          <div className="Anime-ep">{ep.episodeId}</div>
                         </li>
                       ) : ep.episodeNum % 2 === 0 ? (
                         <li className="btn__ep even" style={{ color: "white" }}>
-                          <div className="green m-2">{ep.episodeNum}</div>
-                          <div className="me-2">{ep.episodeId}</div>
+                          <div className="green Anime-ep-num">
+                            {ep.episodeNum}
+                          </div>
+                          <div className="Anime-ep">{ep.episodeId}</div>
                         </li>
                       ) : (
                         <li className="btn__ep odd" style={{ color: "white" }}>
-                          <div className="green m-2">{ep.episodeNum}</div>
-                          <div>{ep.episodeId}</div>
+                          <div className="green Anime-ep-num">
+                            {ep.episodeNum}
+                          </div>
+                          <div className="Anime-ep">{ep.episodeId}</div>
                         </li>
                       )}
                     </Link>

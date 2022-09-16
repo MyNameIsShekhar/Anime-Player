@@ -21,15 +21,15 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 15px;
 }
 
 *::-webkit-scrollbar-track {
-  background: #202125;
+  background: rgb(32, 33, 37);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #3d3e42;
+  background-color: hsl(180, 0%, 48%);
   /* border-radius: 10px; */
 }
 
@@ -242,6 +242,24 @@ a:hover {
   margin-right: auto;
 }
 
+.Anime-ep-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Anime-ep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 10px 0;
+}
+
 .video_player {
   /* position: relative;
   display: flex;
@@ -288,14 +306,17 @@ iframe {
 }
 
 .even {
-  background-color: #202125;
+  background-color: hsl(228, 7%, 10%);
 }
 .odd {
   background-color: hsl(228, 7%, 20%);
 }
 
 .active {
-  background-color: rgb(4, 142, 4) !important;
+  background: url("/src/img/bg-ep.webp");
+  background-color: hsl(107, 39%, 30%);
+  background-repeat: no-repeat;
+  background-size: 5px 100%;
 }
 
 /* video {
