@@ -78,14 +78,14 @@ export default function Stream() {
 
           {/* Video */}
           <div className="video_player m-auto mt-5">
-            <ReactPlayer url={data} controls className="reactPlayer" />
+            {/* <ReactPlayer url={data} controls className="reactPlayer" /> */}
             {/* <iframe
               src="https://gogohd.net/streaming.php?id=MTg4NzA5&title=Cardfight%21%21+Vanguard%3A+Will%2BDress+Episode+1&typesub=SUB"
               title="myiframe"
             /> */}
           </div>
 
-          <div className="details">hi</div>
+          {/* <div className="details">hi</div> */}
         </div>
       ) : (
         <div className="title-container">

@@ -53,6 +53,8 @@ function App() {
       console.log("err");
     }
   };
+
+  // Fetch function call
   useEffect(() => {
     if (!renderAfterCalled.current) {
       getAnime(1);
@@ -62,6 +64,7 @@ function App() {
     renderAfterCalled.current = true;
   }, []);
 
+  // Search Bar function
   const handelChanges = async (val) => {
     const searchRes = await axios
       .get(`https://gogoanime.herokuapp.com/search?keyw=${val}`)
@@ -72,6 +75,8 @@ function App() {
       setSearchResult(searchRes.data);
     }
   };
+
+  // Handle click
   const handelClick = () => {
     setSearchResult(null);
     childRef.current.emptySearch();
