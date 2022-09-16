@@ -454,6 +454,16 @@ circle {
   }
 }
 
+@media (max-width: 483px) {
+  .card__main {
+    width: 100px;
+    padding: 0 5px;
+  }
+  .card__Img {
+    margin-top: 5px;
+  }
+}
+
 @media (max-width: 460px) {
   .video_player {
     height: 250px !important;
