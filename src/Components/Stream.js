@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 export default function Stream() {
   const { episodeId } = useParams();
@@ -104,6 +104,7 @@ export default function Stream() {
               frameBorder="0"
               allowfullscreen="allowfullscreen"
               webkitallowfullscreen="true"
+              title={animeId}
             />
           </div>
 

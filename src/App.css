@@ -314,7 +314,7 @@ iframe {
 
 .active {
   background: url("/src/img/bg-ep.webp");
-  background-color: hsl(107, 39%, 30%);
+  background-color: hsl(80, 39%, 20%);
   background-repeat: no-repeat;
   background-size: 5px 100%;
 }
