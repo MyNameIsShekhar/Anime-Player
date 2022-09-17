@@ -1,5 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import InfiniteScroll from "react-infinite-scroll-component";
+import spinner from "../img/Spinner.gif";
 import Card from "../Components/Card";
 const Popular = (props) => {
   const handelClick = () => {
@@ -55,14 +57,20 @@ const Popular = (props) => {
               />
             ))}
           </div>
-          <button
+          <InfiniteScroll
+            dataLength={props.popular.length}
+            next={loadMore}
+            hasMore={true}
+            loader={<img src={spinner} alt="spinner" width="50px" />}
+          ></InfiniteScroll>
+          {/* <button
             className="btn btn-primary ms-auto me-auto mt-3"
             align="center"
             style={{ width: "fit-content" }}
             onClick={loadMore}
           >
             Load More
-          </button>
+          </button> */}
           <hr
             style={{
               color: "white",

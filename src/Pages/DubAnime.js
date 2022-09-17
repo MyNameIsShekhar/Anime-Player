@@ -1,6 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "../Components/Card";
+import spinner from "../img/Spinner.gif";
 
 const DubAnime = (props, ref) => {
   const handelClick = () => {
@@ -47,18 +49,17 @@ const DubAnime = (props, ref) => {
             >
               Recently Added <b>DUB</b> Anime
             </h1>
+
             {props.recent.map((rec) => (
               <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
-          <button
-            className="btn btn-primary ms-auto me-auto mt-3"
-            align="center"
-            style={{ width: "fit-content" }}
-            onClick={loadMore}
-          >
-            Load More
-          </button>
+          <InfiniteScroll
+            dataLength={props.recent.length}
+            next={loadMore}
+            hasMore={true}
+            loader={<img src={spinner} alt="spinner" width="50px" />}
+          ></InfiniteScroll>
           <hr
             style={{
               color: "white",
