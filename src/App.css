@@ -64,10 +64,14 @@ body {
 
 .navbar .nav-item a,
 h4,
+h1,
 .green {
   color: #cae962;
 }
 
+h1 {
+  font-size: 28px;
+}
 .nav-item a:hover {
   opacity: 0.6;
 }

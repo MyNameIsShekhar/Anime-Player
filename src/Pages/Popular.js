@@ -1,17 +1,30 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
-import Card from "./Card";
-
-const DubAnime = forwardRef((props, ref) => {
-  const popular = useRef(null);
+import React from "react";
+import { Helmet } from "react-helmet";
+import Card from "../Components/Card";
+const Popular = (props) => {
   const handelClick = () => {
     props.handelClick();
   };
   const loadMore = () => {
-    props.loadMoreDub();
+    props.loadMorePopular();
   };
   return (
     <>
-      {Object.keys(props.recent).length === 0 ? (
+      <Helmet>
+        <meta
+          name="description"
+          content={`Best site to watch Anime English Sub/Dub online Free and download Anime English Sub/Dub anime.`}
+          charSet="utf-8"
+        />
+        <meta
+          name="keywords"
+          content={`watch Popular anime online, popular anime watch online, download popular anime, popular anime in sub/dub, popular anime dub`}
+          charSet="utf-8"
+        />
+        <title>{`Watch Popular Anime free on animix.netlify.app`}</title>
+        <link rel="canonical" href={`/popular`} />
+      </Helmet>
+      {Object.keys(props.popular).length === 0 ? (
         <div className="title-container">
           <div className="spinner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -22,8 +35,8 @@ const DubAnime = forwardRef((props, ref) => {
         </div>
       ) : (
         <div className="container__total">
-          <div className="container__main row">
-            <h4
+          <div className="container__main row Popular">
+            <h1
               style={{
                 marginTop: "20px",
                 textTransform: "uppercase",
@@ -31,10 +44,15 @@ const DubAnime = forwardRef((props, ref) => {
               }}
               align="center"
             >
-              Recently Added <b>DUB</b> Anime
-            </h4>
-            {props.recent.map((rec) => (
-              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
+              Popular Anime
+            </h1>
+            {props.popular.map((rec) => (
+              <Card
+                rec={rec}
+                key={rec.animeId}
+                handelClick={handelClick}
+                ep="false"
+              />
             ))}
           </div>
           <button
@@ -57,6 +75,6 @@ const DubAnime = forwardRef((props, ref) => {
       )}
     </>
   );
-});
+};
 
-export default DubAnime;
+export default Popular;

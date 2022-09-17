@@ -1,15 +1,31 @@
 import React from "react";
-import Card from "./Card";
-const Popular = (props) => {
+import { Helmet } from "react-helmet";
+import Card from "../Components/Card";
+
+const DubAnime = (props, ref) => {
   const handelClick = () => {
     props.handelClick();
   };
   const loadMore = () => {
-    props.loadMorePopular();
+    props.loadMoreDub();
   };
   return (
     <>
-      {Object.keys(props.popular).length === 0 ? (
+      <Helmet>
+        <meta
+          name="description"
+          content={`Best site to watch Anime English Sub/Dub online Free and download Anime English Sub/Dub anime.`}
+          charSet="utf-8"
+        />
+        <meta
+          name="keywords"
+          content={`Watch Dub anime online, Dub anime watch online, download dub anime, Anime in english, Anime dub in english`}
+          charSet="utf-8"
+        />
+        <title>{`Watch Dub Anime free on animix.netlify.app`}</title>
+        <link rel="canonical" href={`/dub-anime`} />
+      </Helmet>
+      {Object.keys(props.recent).length === 0 ? (
         <div className="title-container">
           <div className="spinner">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -20,8 +36,8 @@ const Popular = (props) => {
         </div>
       ) : (
         <div className="container__total">
-          <div className="container__main row Popular">
-            <h4
+          <div className="container__main row">
+            <h1
               style={{
                 marginTop: "20px",
                 textTransform: "uppercase",
@@ -29,15 +45,10 @@ const Popular = (props) => {
               }}
               align="center"
             >
-              Popular Anime
-            </h4>
-            {props.popular.map((rec) => (
-              <Card
-                rec={rec}
-                key={rec.animeId}
-                handelClick={handelClick}
-                ep="false"
-              />
+              Recently Added <b>DUB</b> Anime
+            </h1>
+            {props.recent.map((rec) => (
+              <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
             ))}
           </div>
           <button
@@ -59,14 +70,7 @@ const Popular = (props) => {
         </div>
       )}
     </>
-    //   <button
-    //     className="btn btn-primary ms-auto me-auto mt-3"
-    //     align="center"
-    //     style={{ width: "fit-content" }}
-    //   >
-    //     Load More
-    //   </button>
   );
 };
 
-export default Popular;
+export default DubAnime;

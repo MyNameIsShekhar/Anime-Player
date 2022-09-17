@@ -1,8 +1,8 @@
-import React, { forwardRef, useImperativeHandle, useRef } from "react";
-import Card from "./Card";
+import React from "react";
+import { Helmet } from "react-helmet";
+import Card from "../Components/Card";
 
 const RecentAnime = (props) => {
-  const popular = useRef(null);
   const handelClick = () => {
     props.handelClick();
   };
@@ -21,6 +21,20 @@ const RecentAnime = (props) => {
   // }));
   return (
     <>
+      <Helmet>
+        <meta
+          name="description"
+          content={`Best site to watch Anime English Sub/Dub online Free and download Anime English Sub/Dub anime.`}
+          charSet="utf-8"
+        />
+        <meta
+          name="keywords"
+          content={`watch recent anime online, anime watch online, download recent anime, recent anime in sub/dub, recent anime dub, downlaod anime, watch anime online`}
+          charSet="utf-8"
+        />
+        <title>{`Watch Recent Anime free on animix.netlify.app`}</title>
+        <link rel="canonical" href={`/`} />
+      </Helmet>
       {Object.keys(props.recent).length === 0 ? (
         <div className="title-container">
           <div className="spinner">
@@ -33,7 +47,7 @@ const RecentAnime = (props) => {
       ) : (
         <div className="container__total">
           <div className="container__main row">
-            <h4
+            <h1
               style={{
                 marginTop: "20px",
                 textTransform: "uppercase",
@@ -42,7 +56,7 @@ const RecentAnime = (props) => {
               align="center"
             >
               Recently Added Anime
-            </h4>
+            </h1>
             {props.recent &&
               props.recent.map((rec) => (
                 <Card rec={rec} key={rec.animeId} handelClick={handelClick} />

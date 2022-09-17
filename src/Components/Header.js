@@ -19,11 +19,6 @@ const Header = forwardRef((props, ref) => {
       text: "Dub Anime",
       to: "/dub-anime",
     },
-    {
-      id: 4,
-      text: "Help",
-      to: "/",
-    },
   ];
   const [inputVal, setInputVal] = useState("");
   const handelChange = (e) => {

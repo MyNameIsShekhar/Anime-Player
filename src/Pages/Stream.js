@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLocation, useParams } from "react-router-dom";
 // import ReactPlayer from "react-player";
 
@@ -38,6 +39,20 @@ export default function Stream() {
 
   return (
     <>
+      <Helmet>
+        <meta
+          name="description"
+          content={`Best site to watch Anime English Sub/Dub online Free and download Anime English Sub/Dub anime.`}
+          charSet="utf-8"
+        />
+        <meta
+          name="keywords"
+          content={`${detail.animeTitle} English Sub/Dub, free ${detail.animeTitle} online, watch ${detail.animeTitle} online, watch ${detail.animeTitle} free, download ${detail.animeTitle} anime, download ${detail.animeTitle} free`}
+          charSet="utf-8"
+        />
+        <title>{`Watch ${detail.animeTitle} free on animix.netlify.app`}</title>
+        <link rel="canonical" href={`//vidcdn/watch/${episodeId}`} />
+      </Helmet>
       {Object.keys(data).length !== 0 ? (
         <div className="container_all">
           {/* All Episodes */}
