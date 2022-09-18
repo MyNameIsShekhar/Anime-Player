@@ -369,6 +369,10 @@ circle {
   stroke-dasharray: 300;
   animation: outline 2s cubic-bezier(0.77, 0, 0.18, 1) infinite;
 }
+.ad-placement,
+.afs_ads {
+  display: none !important;
+}
 
 @keyframes outline {
   0% {
