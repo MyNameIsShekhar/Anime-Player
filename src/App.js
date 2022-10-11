@@ -51,14 +51,16 @@ function App() {
     }else{
       flag.current=0;
     } 
-  }, [flag])
+    console.log(flag.current)
+  })
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lastwatch));
   }, [lastwatch]);
   // get lastwatch anime
   useState(() => {
     const fetchLastWatch = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (fetchLastWatch) setLastwatch(fetchLastWatch);
+    if (fetchLastWatch) 
+    setLastwatch(fetchLastWatch);
   }, []);
 
   // same url or not
