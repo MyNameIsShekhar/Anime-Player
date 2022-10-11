@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Lastwatch = (props) => {
-  return (
+  return (<>
+    {props.lastwatch !== null ? 
     <div className="lastwatch" >
       <Link
         to={props.lastwatch.url}
@@ -42,7 +43,9 @@ const Lastwatch = (props) => {
           />
         </div>
       </Link>
-    </div>
+    </div>:null
+    }
+    </>
   );
 };
 
