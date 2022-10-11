@@ -66,7 +66,7 @@ const Header = forwardRef((props, ref) => {
             <div className="nav_list" id="navbarSupportedContent">
               <ul className="nav_list navbar-nav me-auto mb-2 mb-lg-0">
                 {navList.map((list) => (
-                  <li className="nav-item">
+                  <li className="nav-item" key={list.to}>
                     <Link to={list.to} className="HeaderLi link">
                       {list.text}
                     </Link>

@@ -4,13 +4,13 @@ import { Helmet } from "react-helmet";
 import { Link, useLocation, useParams } from "react-router-dom";
 // import ReactPlayer from "react-player";
 
-export default function Stream() {
+export default function Stream(props) {
   const { episodeId } = useParams();
 
   const [data, setData] = useState([]);
   const [detail, setDetail] = useState([]);
   const location = useLocation();
-  // const animeId = stateData.state
+  // const animeId = stateData.state;
   const animeId = location.state.animeID;
 
   useEffect(() => {
@@ -19,7 +19,6 @@ export default function Stream() {
         const Video = await axios.get(
           `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
         );
-        console.log(Video.data.Referer);
         // const source = Video.data.sources;
         // const first = source[0];
         setData(Video.data.Referer);
@@ -31,9 +30,20 @@ export default function Stream() {
       const Detail = await axios
         .get(`https://gogoanime.herokuapp.com/anime-details/${animeId}`)
         .catch((err) => console.log("Connection Error"));
+      const temp = episodeId;
+      const ep = Detail.data.episodesList.find(
+        ({ episodeId }) => episodeId === temp
+      );
+      props.lastwatch({
+        ep: ep.episodeNum,
+        title: Detail.data.animeTitle,
+        url: window.location.pathname,
+        animeId: animeId,
+      });
       setDetail(Detail.data);
     };
     getDetail();
+    // lastAnime();
     getVideo();
   }, [animeId, episodeId]);
 
@@ -117,7 +127,7 @@ export default function Stream() {
               height="500"
               scrolling="no"
               frameBorder="0"
-              allowfullscreen="allowfullscreen"
+              allowFullScreen="allowfullscreen"
               webkitallowfullscreen="true"
               title={animeId}
             />

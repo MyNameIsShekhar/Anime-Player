@@ -19,9 +19,9 @@ export default function Card(props) {
             className="card__Img card-img-top rounded"
             alt={props.rec.animeId}
           />
-          <div className="card-body row">
+          <div className="card-body row =">
             <h5
-              className="card-title"
+              className="card-title hiddentext"
               align="center"
               dangerouslySetInnerHTML={{
                 __html: makeBold(props.rec.animeTitle, "Dub"),

@@ -66,6 +66,7 @@ const DubAnime = (props, ref) => {
               height: "2px",
               width: "80%",
               margin: "20px auto",
+              marginBottom: "5.2rem",
             }}
           />
         </div>
