@@ -389,6 +389,8 @@ iframe > iframe {
 
 /* Last watch */
 .lastwatch {
+  display: grid;
+  grid-template-columns: 80% 20%;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -398,8 +400,29 @@ iframe > iframe {
   color: white;
   z-index: 100;
   padding: 0 20px;
+  transition: width 200ms;
+}
+.deactiveLw{
+  visibility: hidden;
 }
 
+.lastwatchClose{
+  cursor: pointer;
+  font-size: 28px;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+}
+.lastwatchOpen{
+  cursor: pointer;
+  font-size: 28px;
+  align-items: center;
+}
+.switchLw{
+  justify-self: center;
+  margin-top: 13px; 
+}
 @keyframes outline {
   0% {
     stroke-dashoffset: 0;

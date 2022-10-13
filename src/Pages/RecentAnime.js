@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import spinner from "../img/Spinner.gif";
 import Card from "../Components/Card";
+import Lastwatch from "../Components/Lastwatch"
+import { useState } from "react";
 
 const RecentAnime = (props) => {
   const handelClick = () => {
@@ -21,6 +23,16 @@ const RecentAnime = (props) => {
   //     }
   //   },
   // }));
+
+  // get lastwatch anime
+  const [lastwatch, setLastwatch] = useState(null);
+  // Localstroage key
+  const LOCAL_STORAGE_KEY = "animix-netlify-app";
+  useState(() => {
+    const fetchLastWatch = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (fetchLastWatch)
+      setLastwatch(fetchLastWatch);
+  }, []);
   return (
     <>
       <Helmet>
@@ -47,30 +59,31 @@ const RecentAnime = (props) => {
           <h4 className="title">loading...</h4>
         </div>
       ) : (
-        <div className="container__total">
-          <div className="container__main row">
-            <h1
-              style={{
-                marginTop: "20px",
-                textTransform: "uppercase",
-                fontFamily: "Poppins",
-              }}
-              align="center"
-            >
-              Recently Added Anime
-            </h1>
-            {props.recent &&
-              props.recent.map((rec) => (
-                <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
-              ))}
-          </div>
-          <InfiniteScroll
-            dataLength={props.recent.length}
-            next={loadMore}
-            hasMore={true}
-            loader={<img src={spinner} alt="spinner" width="50px" />}
-          ></InfiniteScroll>
-          {/* <button
+        <>
+          <div className="container__total">
+            <div className="container__main row">
+              <h1
+                style={{
+                  marginTop: "20px",
+                  textTransform: "uppercase",
+                  fontFamily: "Poppins",
+                }}
+                align="center"
+              >
+                Recently Added Anime
+              </h1>
+              {props.recent &&
+                props.recent.map((rec) => (
+                  <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
+                ))}
+            </div>
+            <InfiniteScroll
+              dataLength={props.recent.length}
+              next={loadMore}
+              hasMore={true}
+              loader={<img src={spinner} alt="spinner" width="50px" />}
+            ></InfiniteScroll>
+            {/* <button
             className="btn btn-primary ms-auto me-auto mt-3"
             align="center"
             style={{ width: "fit-content" }}
@@ -78,16 +91,18 @@ const RecentAnime = (props) => {
           >
             Load More
           </button> */}
-          <hr
-            style={{
-              color: "white",
-              height: "2px",
-              width: "80%",
-              margin: "20px auto",
-              marginBottom: "5.2rem",
-            }}
-          />
-        </div>
+            <hr
+              style={{
+                color: "white",
+                height: "2px",
+                width: "80%",
+                margin: "20px auto",
+                marginBottom: "5.2rem",
+              }}
+            />
+          </div>
+          <Lastwatch lastwatch={lastwatch} />
+        </>
       )}
     </>
   );

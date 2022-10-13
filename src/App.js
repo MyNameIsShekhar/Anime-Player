@@ -3,7 +3,6 @@ import Header from "./Components/Header";
 import DubAnime from "./Pages/DubAnime";
 import RecentAnime from "./Pages/RecentAnime";
 import SearchJSX from "./Components/SearchJSX";
-import Lastwatch from "./Components/Lastwatch";
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,9 +16,6 @@ import Popular from "./Pages/Popular";
 
 function App() {
   const childRef = useRef();
-  // const scrollRef = useRef();
-  // Localstroage key
-  const LOCAL_STORAGE_KEY = "animix-netlify-app";
   const [recent, setRecent] = useState([]);
   const [popular, setPopular] = useState([]);
   const [dub, setDub] = useState([]);
@@ -28,43 +24,6 @@ function App() {
   const [idxdub, setIdxdub] = useState(1);
   const renderAfterCalled = useRef(false);
   const [searchResult, setSearchResult] = useState(null);
-  const flag = useRef(0);
-
-  // Set lastwatch anime
-  const [lastwatch, setLastwatch] = useState(null);
-  const lwa = (lw) => {
-    setLastwatch(lw);
-  };
-  const checkUrl = (url) => {
-    for (var i = url.length; i >= 0; i--) {
-      if (url[i] === "/") {
-        break;
-      }
-    }
-
-    url = url.substring(0, i);
-    return url;
-  };
-  useEffect(()=>{
-    if(checkUrl(window.location.pathname) === "/vidcdn/watch" ){
-      flag.current=1;
-    }else{
-      flag.current=0;
-    } 
-    console.log(flag.current)
-  })
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lastwatch));
-  }, [lastwatch]);
-  // get lastwatch anime
-  useState(() => {
-    const fetchLastWatch = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (fetchLastWatch) 
-    setLastwatch(fetchLastWatch);
-  }, []);
-
-  // same url or not
-  
 
   // Fetch Functions
   const getAnime = async (id = 1) => {
@@ -193,10 +152,9 @@ function App() {
         <Route
           exact
           path="/vidcdn/watch/:episodeId"
-          element={<Stream lastwatch={lwa} />}
+          element={<Stream />}
         />
       </Routes>
-      {flag.current === 0 ? <Lastwatch lastwatch={lastwatch} /> : null}
     </Router>
   );
 }

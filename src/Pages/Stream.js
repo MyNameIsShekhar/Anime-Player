@@ -10,9 +10,10 @@ export default function Stream(props) {
   const [data, setData] = useState([]);
   const [detail, setDetail] = useState([]);
   const location = useLocation();
-  // const animeId = stateData.state;
   const animeId = location.state.animeID;
-
+  const [lastwatch, setLastwatch] = useState(null);
+  // Localstroage key
+  const LOCAL_STORAGE_KEY = "animix-netlify-app";
   useEffect(() => {
     const getVideo = async () => {
       try {
@@ -34,19 +35,22 @@ export default function Stream(props) {
       const ep = Detail.data.episodesList.find(
         ({ episodeId }) => episodeId === temp
       );
-      props.lastwatch({
+      setLastwatch({
         ep: ep.episodeNum,
         title: Detail.data.animeTitle,
         url: window.location.pathname,
         animeId: animeId,
       });
+
       setDetail(Detail.data);
     };
     getDetail();
     // lastAnime();
     getVideo();
   }, [animeId, episodeId]);
-
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lastwatch));
+  }, [lastwatch]);
   return (
     <>
       <Helmet>
