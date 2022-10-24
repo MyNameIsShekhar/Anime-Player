@@ -20,6 +20,7 @@
   - [Local](#local)
   - [Docker](#docker)
   - [Heroku](#heroku)
+  - [Project set up in your local system](#project-set-up-in-your-local-system)
 - [Routes](#routes)
   - [Get Recent Episodes](#get-recent-episodes)
   - [Get Popular Anime](#get-popular-anime)
@@ -78,6 +79,63 @@ You can add `-d` flag to run the server in detached mode.
 Host your own instance of the api on heroku using the button below.
 
 [![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/riimuru/gogoanime/tree/main)
+
+## Project set up in your local system
+- Fork this repo (button on top)
+- Clone on your local machine
+
+```terminal
+git clone https://github.com/krishnenduroy52/Anime-Player.git
+```
+- Navigate to project directory.
+```terminal
+cd Anime-Player
+```
+
+- Create a new Branch
+
+```markdown
+git checkout -b my-new-branch
+```
+
+```markdown
+git add .
+```
+- Commit your changes.
+
+```markdown
+git commit -m "Relevant message"
+```
+- Then push 
+```markdown
+git push origin my-new-branch
+```
+
+
+- Create a new pull request from your forked repository
+
+<br>
+
+## Avoid Conflicts {Syncing your fork}
+
+An easy way to avoid conflicts is to add an 'upstream' for your git repo, as other PR's may be merged while you're working on your branch/fork.   
+
+```terminal
+git remote add upstream https://github.com/krishnenduroy52/Anime-Player.git
+```
+
+You can verify that the new remote has been added by typing
+```terminal
+git remote -v
+```
+
+To pull any new changes from your parent repo simply run
+```terminal
+git merge upstream/master
+```
+
+This will give you any eventual conflicts and allow you to easily solve them in your repo. It's a good idea to use it frequently in between your own commits to make sure that your repo is up to date with its parent.
+
 
 
 ## Routes
