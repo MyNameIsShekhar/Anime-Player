@@ -37,11 +37,11 @@ export default function SearchJSX(props) {
               margin: "20px auto",
             }}
           />
-          <span onClick={handelClick}>
+          <div className="container__main row" >
             {props.searchResult?.map((rec) => (
-              <Card rec={rec} key={rec.animeId} padding="0 9px" ep="false" />
+              <Card rec={rec} key={rec.animeId} ep="false" handelClick={handelClick} />
             ))}
-          </span>
+          </div>
           <hr
             style={{
               color: "white",

@@ -46,9 +46,13 @@ export default function Stream(props) {
       setDetail(Detail.data);
     };
     getDetail();
-    // lastAnime();
     getVideo();
   }, [animeId, episodeId]);
+
+  // useEffect(() => {
+  //   console.log(document.getElementsByClassName('show'))
+  // }, [])
+
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lastwatch));
   }, [lastwatch]);

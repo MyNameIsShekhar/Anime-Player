@@ -68,7 +68,7 @@ export default function Details(props) {
                   Total Ep: <span className="green">{detail.releasedDate}</span>
                 </p>
               </div>
-              <div align="center" className="mt-3" style={{marginBottom: "5.2rem"}}>
+              <div align="center" className="mt-3" style={{ marginBottom: "5.2rem" }}>
                 <Link
                   to={`/vidcdn/watch/${watch}`}
                   state={{ animeID: `${animeId}` }}
@@ -89,6 +89,7 @@ export default function Details(props) {
                     <div
                       className="genres_box m-2 py-2"
                       style={{ width: "fit-content" }}
+                      key={gen}
                     >
                       {gen}
                     </div>

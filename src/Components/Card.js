@@ -10,7 +10,7 @@ export default function Card(props) {
     <>
       <div
         className="card__main card m-2"
-        style={{ display: "inline-block", padding: `${props.padding}` }}
+        style={{ display: "inline-block" }}
         onClick={() => props.handelClick()}
       >
         <Link to={`/anime-detail/${props.rec.animeId}`}>
@@ -19,7 +19,7 @@ export default function Card(props) {
             className="card__Img card-img-top rounded"
             alt={props.rec.animeId}
           />
-          <div className="card-body row =">
+          <div className="card-body row">
             <h5
               className="card-title hiddentext"
               align="center"

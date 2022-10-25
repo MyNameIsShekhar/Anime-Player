@@ -74,7 +74,7 @@ const Header = forwardRef((props, ref) => {
                 ))}
               </ul>
             </div>
-            <div className="p-2 bg-light rounded rounded-pill input-gp ms-auto ">
+            <div className="p-2 bg-light rounded  input-gp ms-auto ">
               <div className="input-group ">
                 <input
                   type="search"
