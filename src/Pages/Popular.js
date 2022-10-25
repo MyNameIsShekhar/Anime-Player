@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import spinner from "../img/Spinner.gif";
 import Card from "../Components/Card";
+
+import { useFetchInitialData } from "../utils/hooks";
+
 const Popular = (props) => {
+  const ref = useRef(null);
+
   const handelClick = () => {
     props.handelClick();
   };
   const loadMore = () => {
     props.loadMorePopular();
   };
+
+  const { loading, popular, loadMorePopular } = props;
+
+  useFetchInitialData(loading, popular, loadMorePopular, ref, window)
+
   return (
     <>
       <Helmet>
@@ -37,7 +47,7 @@ const Popular = (props) => {
         </div>
       ) : (
         <div className="container__total">
-          <div className="container__main row Popular">
+          <div className="container__main row Popular" ref={ref}>
             <h1
               style={{
                 marginTop: "20px",

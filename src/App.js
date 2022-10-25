@@ -24,36 +24,46 @@ function App() {
   const [idxdub, setIdxdub] = useState(1);
   const renderAfterCalled = useRef(false);
   const [searchResult, setSearchResult] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Fetch Functions
   const getAnime = async (id = 1) => {
     try {
+      setLoading(true);
       const Data = await axios.get(
         `https://gogoanime.herokuapp.com/recent-release?page=${id}`
       );
       setRecent((recent) => [...recent, ...Data.data]);
+      setLoading(false);
     } catch (err) {
       console.log("err");
+      setLoading(false);
     }
   };
   const getPropular = async (id = 1) => {
     try {
+      setLoading(true);
       const propu = await axios.get(
         `https://gogoanime.herokuapp.com/popular?page=${id}`
       );
       setPopular((popular) => [...popular, ...propu.data]);
+      setLoading(false);
     } catch (err) {
       console.log("err");
+      setLoading(false);
     }
   };
   const getDub = async (id = 1) => {
     try {
+      setLoading(true);
       const Data = await axios.get(
         `https://gogoanime.herokuapp.com/recent-release?type=2&page=${id}`
       );
       setDub((dub) => [...dub, ...Data.data]);
+      setLoading(false);
     } catch (err) {
       console.log("err");
+      setLoading(false);
     }
   };
 
@@ -118,6 +128,7 @@ function App() {
               searchResult={searchResult}
               handelClick={handelClick}
               loadMoreRecent={loadMoreRecent}
+              loading={loading}
             />
           }
         />
@@ -129,6 +140,7 @@ function App() {
               popular={popular}
               handelClick={handelClick}
               loadMorePopular={loadMorePopular}
+              loading={loading}
             />
           }
         />
@@ -141,6 +153,7 @@ function App() {
               searchResult={searchResult}
               handelClick={handelClick}
               loadMoreDub={loadMoreDub}
+              loading={loading}
             />
           }
         />

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 import spinner from "../img/Spinner.gif";
 import Card from "../Components/Card";
 import Lastwatch from "../Components/Lastwatch"
-import { useState } from "react";
+
+import { useFetchInitialData } from "../utils/hooks";
 
 const RecentAnime = (props) => {
+  const ref = useRef(null);
+
   const handelClick = () => {
     props.handelClick();
   };
@@ -33,6 +36,11 @@ const RecentAnime = (props) => {
     if (fetchLastWatch)
       setLastwatch(fetchLastWatch);
   }, []);
+
+  const { loading, recent, loadMoreRecent } = props;
+
+  useFetchInitialData(loading, recent, loadMoreRecent, ref, window)
+
   return (
     <>
       <Helmet>
@@ -61,7 +69,7 @@ const RecentAnime = (props) => {
       ) : (
         <>
           <div className="container__total">
-            <div className="container__main row">
+            <div className="container__main row" ref={ref}>
               <h1
                 style={{
                   marginTop: "20px",
@@ -74,7 +82,7 @@ const RecentAnime = (props) => {
               </h1>
               {props.recent &&
                 props.recent.map((rec) => (
-                  <Card rec={rec} key={rec.animeId} handelClick={handelClick} />
+                  <Card rec={rec} key={rec.episodeId} handelClick={handelClick} />
                 ))}
             </div>
             <InfiniteScroll
