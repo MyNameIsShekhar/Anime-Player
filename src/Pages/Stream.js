@@ -12,6 +12,7 @@ export default function Stream(props) {
   const location = useLocation();
   const animeId = location.state.animeID;
   const [lastwatch, setLastwatch] = useState(null);
+  console.log(detail)
   // Localstroage key
   const LOCAL_STORAGE_KEY = "animix-netlify-app";
   useEffect(() => {
@@ -26,6 +27,8 @@ export default function Stream(props) {
       } catch (err) {
         console.log("Connection Error");
       }
+
+      console.log(document.getElementsByTagName("iframe"))
     };
     const getDetail = async () => {
       const Detail = await axios
@@ -68,77 +71,116 @@ export default function Stream(props) {
         <link rel="canonical" href={`//vidcdn/watch/${episodeId}`} />
       </Helmet>
       {Object.keys(data).length !== 0 ? (
-        <div className="container_all">
-          {/* All Episodes */}
-          <div className="all__ep row" align="center">
-            <p
-              className="green"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                fontWeight: "800",
-                textTransform: "capitalize",
-              }}
-            >
-              List Of episodes:
-            </p>
-            <ul className="ep__list">
-              {detail.episodesList &&
-                detail.episodesList
-                  .slice(0)
-                  .reverse()
-                  .map((ep) => (
-                    <Link
-                      to={`/vidcdn/watch/${ep.episodeId}`}
-                      state={{ animeID: `${animeId}` }}
-                    >
-                      {ep.episodeId === episodeId ? (
-                        <li
-                          className="btn__ep even active"
-                          style={{ color: "white" }}
-                        >
-                          <div className="green Anime-ep-num">
-                            {ep.episodeNum}
-                          </div>
-                          <div className="Anime-ep">{ep.episodeId}</div>
-                        </li>
-                      ) : ep.episodeNum % 2 === 0 ? (
-                        <li className="btn__ep even" style={{ color: "white" }}>
-                          <div className="green Anime-ep-num">
-                            {ep.episodeNum}
-                          </div>
-                          <div className="Anime-ep">{ep.episodeId}</div>
-                        </li>
-                      ) : (
-                        <li className="btn__ep odd" style={{ color: "white" }}>
-                          <div className="green Anime-ep-num">
-                            {ep.episodeNum}
-                          </div>
-                          <div className="Anime-ep">{ep.episodeId}</div>
-                        </li>
-                      )}
-                    </Link>
-                  ))}
-            </ul>
-          </div>
+        <>
+          <div className="bg-image" style={{ backgroundImage: `url(${detail.animeImg})` }}></div>
+          <div className="container_all" style={{
+            backgroundColor: "rgba(0,0,0, 0.4)",
+            position: "absolute",
+            top: "22%",
+            width: "100%",
+            paddingBottom: "40.6px"
+          }}>
+            {/* All Episodes */}
+            <div className="all__ep ">
+              <p
+                className="green"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: "800",
+                  textTransform: "capitalize",
+                }}
+              >
+                List Of episodes:
+              </p>
+              <ul className="ep__list">
+                {detail.episodesList &&
+                  detail.episodesList
+                    .slice(0)
+                    .reverse()
+                    .map((ep) => (
+                      <Link
+                        to={`/vidcdn/watch/${ep.episodeId}`}
+                        state={{ animeID: `${animeId}` }}
+                      >
+                        {ep.episodeId === episodeId ? (
+                          <li
+                            className="btn__ep even active"
+                            style={{ color: "white" }}
+                          >
+                            <div className="green Anime-ep-num">
+                              {ep.episodeNum}
+                            </div>
+                            <div className="Anime-ep">{ep.episodeId}</div>
+                          </li>
+                        ) : ep.episodeNum % 2 === 0 ? (
+                          <li className="btn__ep even" style={{ color: "white" }}>
+                            <div className="green Anime-ep-num">
+                              {ep.episodeNum}
+                            </div>
+                            <div className="Anime-ep">{ep.episodeId}</div>
+                          </li>
+                        ) : (
+                          <li className="btn__ep odd" style={{ color: "white" }}>
+                            <div className="green Anime-ep-num">
+                              {ep.episodeNum}
+                            </div>
+                            <div className="Anime-ep">{ep.episodeId}</div>
+                          </li>
+                        )}
+                      </Link>
+                    ))}
+              </ul>
+            </div>
 
-          {/* Video */}
-          <div className="video_player m-auto mt-5">
-            {/* <ReactPlayer url={data} controls className="reactPlayer" /> */}
-            <iframe
-              src={data}
-              width="100%"
-              height="500"
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen="allowfullscreen"
-              webkitallowfullscreen="true"
-              title={animeId}
-            />
-          </div>
+            {/* Video */}
+            <div className="video_player m-auto mt-5">
+              {/* <ReactPlayer url={data} controls className="reactPlayer" /> */}
+              {/* <iframe
+                src={data}
+                width="100%"
+                height="500"
+                scrolling="no"
+                frameBorder="0"
+                allowFullScreen="allowfullscreen"
+                webkitallowfullscreen="true"
+                title={animeId}
+              /> */}
+            </div>
 
-          {/* <div className="details">hi</div> */}
-        </div>
+            <div className="details"><div className="img__detail">
+              <div className="item">
+                <div className="img-wrap">
+                  <img
+                    src={detail.animeImg}
+                    className="detail__img col"
+                    style={{ maxWidth: "150px" }}
+                    alt={detail.animeTitle}
+                  />
+                </div>
+              </div>
+              <p className="green fw-bold capSize noMargin" align="center">
+                {detail.animeTitle}
+              </p>
+              <p className="green fw-bold capSize noMargin" align="center">
+                {detail.otherNames}
+              </p>
+
+              <p className="green capSize noMargin" align="center">
+                {detail.type}
+              </p>
+              <p className="green capSize noMargin" align="center">
+                {detail.releasedDate}
+              </p>
+              <div>
+                <p className="capSize noMargin" align="center">
+                  Total Ep: <span className="green">{detail.releasedDate}</span>
+                </p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </>
       ) : (
         <div className="title-container">
           <div className="spinner">
@@ -148,7 +190,8 @@ export default function Stream(props) {
           </div>
           <h4 className="title">loading...</h4>
         </div>
-      )}
+      )
+      }
     </>
   );
 }

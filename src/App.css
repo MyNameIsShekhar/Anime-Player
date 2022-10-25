@@ -21,7 +21,7 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 15px;
+  width: 5px;
 }
 
 *::-webkit-scrollbar-track {
@@ -241,22 +241,31 @@ a:hover {
   display: grid;
   grid-template-columns: 30% 50% 20%;
 }
-
+.bg-image{
+  height: 80vh;
+  -webkit-filter: blur(10px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .ep__list {
   position: relative;
   overflow: scroll;
   margin: 0;
   padding: 0;
-  height: 60vh;
+  top: 0;
+  max-height: 90.25%;
   overflow-x: hidden;
   font-size: 16px;
-
+  background-color:  hsl(228, 7%, 10%);
   -webkit-overflow-scrolling: touch;
 }
 .all__ep {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  display: grid;
+  grid-template-rows: 3rem 30rem;
 }
 
 .Anime-ep-num {
@@ -335,7 +344,11 @@ iframe {
   background-repeat: no-repeat;
   background-size: 5px 100%;
 }
-
+.details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* video {
   width: fit-content;
   height: fit-content;
