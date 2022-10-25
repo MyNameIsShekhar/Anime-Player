@@ -135,7 +135,7 @@ export default function Stream(props) {
             {/* Video */}
             <div className="video_player m-auto mt-5">
               {/* <ReactPlayer url={data} controls className="reactPlayer" /> */}
-              {/* <iframe
+              <iframe
                 src={data}
                 width="100%"
                 height="500"
@@ -144,7 +144,7 @@ export default function Stream(props) {
                 allowFullScreen="allowfullscreen"
                 webkitallowfullscreen="true"
                 title={animeId}
-              /> */}
+              />
             </div>
 
             <div className="details"><div className="img__detail">
