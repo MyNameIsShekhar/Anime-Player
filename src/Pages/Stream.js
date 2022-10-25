@@ -12,7 +12,6 @@ export default function Stream(props) {
   const location = useLocation();
   const animeId = location.state.animeID;
   const [lastwatch, setLastwatch] = useState(null);
-  console.log(detail)
   // Localstroage key
   const LOCAL_STORAGE_KEY = "animix-netlify-app";
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function Stream(props) {
         console.log("Connection Error");
       }
 
-      console.log(document.getElementsByTagName("iframe"))
     };
     const getDetail = async () => {
       const Detail = await axios
@@ -102,6 +100,7 @@ export default function Stream(props) {
                       <Link
                         to={`/vidcdn/watch/${ep.episodeId}`}
                         state={{ animeID: `${animeId}` }}
+                        key={ep.episodeNum}
                       >
                         {ep.episodeId === episodeId ? (
                           <li
