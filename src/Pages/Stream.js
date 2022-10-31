@@ -18,7 +18,7 @@ export default function Stream(props) {
     const getVideo = async () => {
       try {
         const Video = await axios.get(
-          `https://gogoanime.herokuapp.com/vidcdn/watch/${episodeId}`
+          `https://gogoanime.consumet.org/vidcdn/watch/${episodeId}`
         );
         // const source = Video.data.sources;
         // const first = source[0];
@@ -30,7 +30,7 @@ export default function Stream(props) {
     };
     const getDetail = async () => {
       const Detail = await axios
-        .get(`https://gogoanime.herokuapp.com/anime-details/${animeId}`)
+        .get(`https://gogoanime.consumet.org/anime-details/${animeId}`)
         .catch((err) => console.log("Connection Error"));
       const temp = episodeId;
       const ep = Detail.data.episodesList.find(
