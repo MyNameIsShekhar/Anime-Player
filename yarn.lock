@@ -1,0 +1,14 @@
+
+
+react@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#8ac35c48d3fd597d9c97e8dd47e90330ea4914d5"
+
+react-dom@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#dddf832e0e24a65e4bacefde7648c4a9f76f9e9e"
+
+tailwindcss@^2.2.19:
+  version "2.2.19"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.19.tgz#2c203f13a6b067d45aeae5e6bbbc46804d133c5b"
+  integrity sha512-08H6Jixv8Z35m6BlIMUYo6QLP0yCkJX/hHDbLUVGXUWz5hQEGoUM14HLxDpdcy8rDv11XJYPQ3A2C+AXexnhRw==
